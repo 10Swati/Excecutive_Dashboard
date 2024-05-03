@@ -1,0 +1,62 @@
+<div class="flex flex-col bg-slate-100 flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="text-3xl mb-8">Executive Dashboard</div>
+
+        <div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-select (selectionChange)="filterData($event)" placeholder="Select month">
+                        <mat-option *ngFor="let item of monthList" [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="mt-5 grid grid-cols-1 sm:grid-cols-4 gap-4">
+            <div *ngFor="let item of cards" class="flex flex-col flex-auto p-6 bg-white shadow rounded-2xl overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">{{item?.title}}</div>
+                </div>
+                <div class="flex flex-col items-center mt-6 mb-6">
+                    <div class="text-7xl sm:text-6xl font-bold tracking-tight leading-none ">{{item?.count}}</div>
+                    <div class="text-2xl text-green-500 font-medium items-center flex  ">
+                        <mat-icon>arrow_upward</mat-icon>
+                        <span class="">{{item.rate}}%</span>
+                    </div>
+                    <div class="text-md font-medium truncate  text-slate-400">Va previous 30 days</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-auto p-6 bg-white shadow rounded-2xl overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Page Views</div>
+                </div>
+                <div id="chart1">
+                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                        [labels]="chartOptions1.labels" [responsive]="chartOptions1.responsive" [dataLabels]="chartOptions.dataLabels"
+                        ></apx-chart>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 mt-8">
+            <div id="chart">
+                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                    [fill]="chartOptions.fill" [dataLabels]="chartOptions.dataLabels" [title]="chartOptions.title"
+                    [yaxis]="chartOptions.yaxis"></apx-chart>
+            </div>
+            <div>
+                <div id="chart">
+                    <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+                        [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
+                        [responsive]="chartOptions2.responsive" [xaxis]="chartOptions2.xaxis"
+                        [title]="chartOptions2.title" [yaxis]="chartOptions2.yaxis" [legend]="chartOptions2.legend"
+                        [fill]="chartOptions2.fill"></apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
